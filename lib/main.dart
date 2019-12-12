@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -34,6 +36,11 @@ class _MyHomePageState extends State<MyHomePage> {
       print("number = " + number.toString());
       output = fish2.guessCheck(number);
     });
+  }
+
+  void reset(){
+    print('reset is clicked on');
+    fish2.reset();
   }
 
   @override
@@ -74,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
             SizedBox(height: 8.0,),
             Container(
-              child: FlatButton(onPressed: _incrementCounter,
+              child: FlatButton(onPressed: reset,
                 child: Text("Reset"),
               ),
               margin: EdgeInsets.all(15.0),
@@ -94,6 +101,11 @@ class Guess{
   int number = 0, count = 0;
   int secret = Random().nextInt(101) + 1;
   String output="";
+
+  void reset(){
+    secret = Random().nextInt(100);
+  }
+
   Guess({this.number});
 
   String guessCheck(number){
@@ -107,7 +119,5 @@ class Guess{
     return output;
   }
 
-  void reset(){
-    Guess();
-  }
+
 }
